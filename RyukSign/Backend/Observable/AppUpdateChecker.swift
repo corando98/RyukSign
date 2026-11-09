@@ -19,6 +19,8 @@ final class AppUpdateChecker: ObservableObject {
     @Published private(set) var updateCount: Int = 0
     
     private var updateCache: [String: Bool] = [:]
+    /// Lowercased developer names listed for each bundle identifier, across every loaded source.
+    private var developersByIdentifier: [String: Set<String>] = [:]
     private let cacheQueue = DispatchQueue(label: "com.feather.updatechecker", attributes: .concurrent)
     
     private init() {}
@@ -101,6 +103,37 @@ final class AppUpdateChecker: ObservableObject {
         )
     }
     
+    /// Rebuilt whenever sources load, so name matches can be checked against every source.
+    func updateDevelopers<S: Sequence>(from sources: S) where S.Element == ASRepository {
+        var developers: [String: Set<String>] = [:]
+        for source in sources {
+            for app in source.apps {
+                guard let identifier = app.id, !identifier.isEmpty,
+                      let developer = Self.normalizedDeveloper(app.developer) else { continue }
+                developers[identifier, default: []].insert(developer)
+            }
+        }
+        cacheQueue.async(flags: .barrier) { [weak self] in
+            self?.developersByIdentifier = developers
+        }
+    }
+
+    /// A name alone can pair two unrelated apps, so it only counts when the listing comes from
+    /// the same developer as a listing for the library app's own bundle identifier.
+    func allowsNameMatch(_ app: ASRepository.App, identifier: String?, originalIdentifier: String?) -> Bool {
+        guard let developer = Self.normalizedDeveloper(app.developer) else { return false }
+        let developers = cacheQueue.sync { developersByIdentifier }
+        return [originalIdentifier, identifier].contains { id in
+            id.flatMap { developers[$0] }?.contains(developer) ?? false
+        }
+    }
+
+    private static func normalizedDeveloper(_ developer: String?) -> String? {
+        guard let trimmed = developer?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+              !trimmed.isEmpty else { return nil }
+        return trimmed
+    }
+
     func clearCache() {
         cacheQueue.async(flags: .barrier) { [weak self] in
             self?.updateCache.removeAll()
@@ -130,6 +163,7 @@ final class AppUpdateChecker: ObservableObject {
             let identifierMatch = !appBundleId.isEmpty &&
                 identifiersMatch(appBundleId, s.identifier, s.originalIdentifier)
             let nameMatch = (s.name ?? "").lowercased() == appNameLower
+                && allowsNameMatch(app, identifier: s.identifier, originalIdentifier: s.originalIdentifier)
             
             if identifierMatch || nameMatch {
                 if let version = s.version {
@@ -145,6 +179,7 @@ final class AppUpdateChecker: ObservableObject {
             let identifierMatch = !appBundleId.isEmpty &&
                 identifiersMatch(appBundleId, i.identifier, i.originalIdentifier)
             let nameMatch = (i.name ?? "").lowercased() == appNameLower
+                && allowsNameMatch(app, identifier: i.identifier, originalIdentifier: i.originalIdentifier)
             
             if identifierMatch || nameMatch {
                 if let version = i.version {

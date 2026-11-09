@@ -313,10 +313,13 @@ struct DownloadButtonView: View {
 
         var candidates: [(uuid: String, name: String, version: String?, type: InstalledAppInfo.AppType)] = []
 
+        let checker = AppUpdateChecker.shared
+
         for s in signedApps {
             let identifierMatch = !appBundleId.isEmpty &&
                 identifiersMatch(appBundleId, s.identifier, s.originalIdentifier)
             let nameMatch = (s.name ?? "").lowercased() == appNameLower
+                && checker.allowsNameMatch(app, identifier: s.identifier, originalIdentifier: s.originalIdentifier)
 
             if identifierMatch || nameMatch {
                 candidates.append((s.uuid ?? "", s.name ?? "", s.version, .signed))
@@ -327,6 +330,7 @@ struct DownloadButtonView: View {
             let identifierMatch = !appBundleId.isEmpty &&
                 identifiersMatch(appBundleId, i.identifier, i.originalIdentifier)
             let nameMatch = (i.name ?? "").lowercased() == appNameLower
+                && checker.allowsNameMatch(app, identifier: i.identifier, originalIdentifier: i.originalIdentifier)
 
             if identifierMatch || nameMatch {
                 candidates.append((i.uuid ?? "", i.name ?? "", i.version, .imported))
