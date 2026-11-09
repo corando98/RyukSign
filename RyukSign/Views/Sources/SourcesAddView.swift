@@ -47,7 +47,9 @@ struct SourcesAddView: View {
 		"https://raw.githubusercontent.com/paigely/Navic/refs/heads/master/app-repo.json",
 		"https://stikdebug.xyz/index.json",
 		"https://apps.manicemu.site/altstore",
-		"https://alt.crystall1ne.dev"
+		"https://alt.crystall1ne.dev",
+		"https://raw.githubusercontent.com/Sami-Wali/ryP0-repository/main/repo.json",
+		"https://mikevillarroel.github.io/mikebuilds-source/buildbox-catalog.json"
 	].map { URL(string: $0)! }
 
 	// MARK: - Ryuk Repos Collection

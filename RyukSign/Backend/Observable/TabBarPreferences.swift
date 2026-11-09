@@ -13,7 +13,7 @@ final class TabBarPreferences: ObservableObject {
 	static let shared = TabBarPreferences()
 
 	/// `settings` excluded so the user can always reach this screen to undo changes.
-	static let hideableTabs: [TabEnum] = [.sources, .library, .tweaks]
+	static let hideableTabs: [TabEnum] = [.sources, .discover, .library, .tweaks]
 
 	@Published private(set) var order: [TabEnum]
 	@Published private(set) var hidden: Set<TabEnum>
