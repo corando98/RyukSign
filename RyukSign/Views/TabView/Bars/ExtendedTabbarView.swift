@@ -18,6 +18,7 @@ struct ExtendedTabbarView: View {
     @ObservedObject private var updateChecker = AppUpdateChecker.shared
     @ObservedObject private var _tweakManager = TweakManager.shared
     @ObservedObject private var _tabPrefs = TabBarPreferences.shared
+    @ObservedObject private var _pinned = PinnedSourcesManager.shared
     @AppStorage("Feather.showSourcesUpdateBadge") private var _showSourcesUpdateBadge: Bool = true
 
     private var _visibleDefaultTabs: [TabEnum] {
@@ -85,7 +86,7 @@ struct ExtendedTabbarView: View {
                     }
                 }
                 
-                ForEach(_sources, id: \.identifier) { source in
+                ForEach(_pinned.sorted(_sources), id: \.identifier) { source in
                     Tab(value: TabSelection.source(source.identifier ?? "")) {
                         NavigationStack {
                             SourceAppsView(object: [source], viewModel: viewModel)

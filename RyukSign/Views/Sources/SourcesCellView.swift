@@ -17,6 +17,7 @@ struct SourcesCellView: View {
 	var isEditMode: Bool = false
 
 	@State private var _isExcluded: Bool = false
+	@ObservedObject private var _pinned = PinnedSourcesManager.shared
 
 	private var _sourceIdentifier: String {
 		source.identifier ?? source.sourceURL?.absoluteString ?? ""
@@ -37,6 +38,11 @@ struct SourcesCellView: View {
 				subtitle: source.sourceURL?.absoluteString ?? "",
 				iconUrl: source.iconURL
 			)
+			if _pinned.isPinned(source) {
+				Image(systemName: "star.fill")
+					.foregroundColor(.yellow)
+					.font(.caption)
+			}
 			if _isPremiumSource {
 				Image(systemName: "crown.fill")
 					.foregroundColor(.yellow)
@@ -60,6 +66,9 @@ struct SourcesCellView: View {
 			cellContent
 		} else {
 			cellContent
+				.swipeActions(edge: .leading) {
+					_pinAction(for: source)
+				}
 				.swipeActions {
 					if !_isPremiumSource {
 						_actions(for: source)
@@ -68,6 +77,7 @@ struct SourcesCellView: View {
 					_contextActions(for: source)
 				}
 				.contextMenu {
+					_pinAction(for: source)
 					_contextActions(for: source)
 					_excludeAction()
 					if !_isPremiumSource {
@@ -93,6 +103,22 @@ extension SourcesCellView {
 		Button(.localized("Copy"), systemImage: "doc.on.clipboard") {
 			UIPasteboard.general.string = source.sourceURL?.absoluteString
 		}
+	}
+
+	@ViewBuilder
+	private func _pinAction(for source: AltSource) -> some View {
+		let isPinned = _pinned.isPinned(source)
+		Button {
+			withAnimation {
+				_pinned.toggle(source)
+			}
+		} label: {
+			Label(
+				isPinned ? .localized("Unpin") : .localized("Pin"),
+				systemImage: isPinned ? "star.slash" : "star"
+			)
+		}
+		.tint(.yellow)
 	}
 
 	@ViewBuilder
