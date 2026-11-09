@@ -9,6 +9,7 @@ import NimbleViews
 
 enum TabEnum: String, CaseIterable, Hashable, Codable {
 	case sources
+	case discover
 	case library
 	case tweaks
 	case settings
@@ -17,6 +18,7 @@ enum TabEnum: String, CaseIterable, Hashable, Codable {
 	var title: String {
 		switch self {
 		case .sources:     	return .localized("Sources")
+		case .discover: 	return .localized("Discover")
 		case .library: 		return .localized("Library")
 		case .tweaks: 		return .localized("Tweaks")
 		case .settings: 	return .localized("Settings")
@@ -27,6 +29,7 @@ enum TabEnum: String, CaseIterable, Hashable, Codable {
 	var icon: String {
 		switch self {
 		case .sources: 		return "globe.desk"
+		case .discover: 	return "sparkles"
 		case .library: 		return "square.grid.2x2"
 		case .tweaks: 		return "wrench.and.screwdriver"
 		case .settings: 	return "gearshape.2"
@@ -38,6 +41,7 @@ enum TabEnum: String, CaseIterable, Hashable, Codable {
 	static func view(for tab: TabEnum) -> some View {
 		switch tab {
 		case .sources: SourcesView()
+		case .discover: DiscoverView()
 		case .library: LibraryView()
 		case .tweaks: TweaksView()
 		case .settings: SettingsView()
@@ -48,6 +52,7 @@ enum TabEnum: String, CaseIterable, Hashable, Codable {
 	static var defaultTabs: [TabEnum] {
 		return [
 			.sources,
+			.discover,
 			.library,
 			.tweaks,
 			.settings
