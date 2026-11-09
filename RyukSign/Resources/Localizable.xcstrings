@@ -76351,6 +76351,338 @@
           }
         }
       }
+    },
+    "After Installing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بعد التثبيت"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Po instalaci"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach der Installation"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After Installing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de instalar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après l’installation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setelah Memasang"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopo l’installazione"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Po instalacji"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После установки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yükledikten Sonra"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sau khi cài đặt"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装后"
+          }
+        }
+      }
+    },
+    "Keep All" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاحتفاظ بالكل"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponechat vše"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle behalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep All"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conservar todo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout conserver"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Semua"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantieni tutto"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj wszystko"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранять все"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümünü Sakla"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giữ tất cả"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部保留"
+          }
+        }
+      }
+    },
+    "Keep Latest Signed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاحتفاظ بأحدث نسخة موقّعة"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponechat nejnovější podepsanou"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neueste signierte behalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Latest Signed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conservar la última firmada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conserver la dernière signée"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Tanda Tangan Terbaru"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantieni l’ultima firmata"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj najnowszą podpisaną"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранять последнюю подписанную"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En Son İmzalıyı Sakla"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giữ bản ký mới nhất"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留最新签名版本"
+          }
+        }
+      }
+    },
+    "After Installing decides what happens to the signed app in your library once it installs. Keep Latest Signed removes older signed copies of that app but keeps the one you installed, so updates can still be checked against it. Delete removes it entirely. Installed apps stay on your device either way." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يحدد «بعد التثبيت» ما يحدث للتطبيق الموقّع في مكتبتك بعد تثبيته. يزيل «الاحتفاظ بأحدث نسخة موقّعة» النسخ الموقّعة الأقدم من ذلك التطبيق مع الإبقاء على النسخة التي ثبّتها، ليظل بالإمكان التحقق من التحديثات مقارنةً بها. ويزيل «حذف» التطبيق بالكامل. تبقى التطبيقات المثبّتة على جهازك في كلتا الحالتين."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Po instalaci určuje, co se stane s podepsanou aplikací v knihovně po její instalaci. Ponechat nejnovější podepsanou odstraní starší podepsané kopie dané aplikace, ale ponechá tu nainstalovanou, aby bylo možné podle ní kontrolovat aktualizace. Smazat ji odstraní úplně. Nainstalované aplikace zůstanou v zařízení v každém případě."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„Nach der Installation“ legt fest, was mit der signierten App in deiner Mediathek passiert, sobald sie installiert ist. „Neueste signierte behalten“ entfernt ältere signierte Kopien dieser App, behält aber die installierte, damit Updates weiterhin damit abgeglichen werden können. „Löschen“ entfernt sie vollständig. Installierte Apps bleiben in jedem Fall auf deinem Gerät."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After Installing decides what happens to the signed app in your library once it installs. Keep Latest Signed removes older signed copies of that app but keeps the one you installed, so updates can still be checked against it. Delete removes it entirely. Installed apps stay on your device either way."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de instalar decide qué ocurre con la app firmada de tu biblioteca una vez instalada. Conservar la última firmada elimina las copias firmadas anteriores de esa app pero conserva la que instalaste, para poder seguir comprobando actualizaciones con ella. Eliminar la borra por completo. Las apps instaladas permanecen en tu dispositivo en ambos casos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après l’installation détermine ce qu’il advient de l’app signée dans votre bibliothèque une fois installée. Conserver la dernière signée supprime les anciennes copies signées de cette app mais garde celle que vous avez installée, pour pouvoir continuer à vérifier les mises à jour. Supprimer la retire entièrement. Les apps installées restent sur votre appareil dans tous les cas."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setelah Memasang menentukan apa yang terjadi pada app bertanda tangan di pustaka Anda setelah terpasang. Simpan Tanda Tangan Terbaru menghapus salinan bertanda tangan lama dari app itu tetapi menyimpan yang Anda pasang, sehingga pembaruan tetap bisa diperiksa terhadapnya. Hapus menghapusnya sepenuhnya. App yang terpasang tetap ada di perangkat Anda dalam kedua kasus."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopo l’installazione stabilisce cosa succede all’app firmata nella libreria una volta installata. Mantieni l’ultima firmata rimuove le copie firmate precedenti di quell’app ma conserva quella installata, così gli aggiornamenti possono ancora essere confrontati con essa. Elimina la rimuove del tutto. Le app installate restano sul dispositivo in ogni caso."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Po instalacji określa, co dzieje się z podpisaną aplikacją w bibliotece po jej zainstalowaniu. Zachowaj najnowszą podpisaną usuwa starsze podpisane kopie tej aplikacji, ale zostawia zainstalowaną, aby nadal można było sprawdzać względem niej aktualizacje. Usuń usuwa ją całkowicie. Zainstalowane aplikacje pozostają na urządzeniu w każdym przypadku."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«После установки» определяет, что происходит с подписанным приложением в медиатеке после его установки. «Сохранять последнюю подписанную» удаляет старые подписанные копии этого приложения, но оставляет установленную, чтобы по ней можно было проверять обновления. «Удалить» удаляет его полностью. Установленные приложения в любом случае остаются на устройстве."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yükledikten Sonra, kitaplığınızdaki imzalı uygulamaya yüklendikten sonra ne olacağını belirler. En Son İmzalıyı Sakla, o uygulamanın eski imzalı kopyalarını kaldırır ancak yüklediğinizi saklar; böylece güncellemeler ona göre kontrol edilebilir. Sil onu tamamen kaldırır. Yüklü uygulamalar her iki durumda da cihazınızda kalır."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sau khi cài đặt quyết định điều gì xảy ra với ứng dụng đã ký trong thư viện sau khi cài. Giữ bản ký mới nhất sẽ xoá các bản ký cũ hơn của ứng dụng đó nhưng giữ bản bạn đã cài, để vẫn có thể kiểm tra cập nhật dựa trên nó. Xoá sẽ xoá hoàn toàn. Ứng dụng đã cài vẫn ở trên thiết bị trong cả hai trường hợp."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“安装后”决定已签名 App 安装后在资源库中如何处理。“保留最新签名版本”会删除该 App 较旧的签名副本，但保留你安装的那个，以便继续据此检查更新。“删除”会将其完全移除。无论哪种方式，已安装的 App 都会保留在设备上。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
