@@ -39,9 +39,18 @@ struct SourcesView: View {
 
 	@ObservedObject var appNavigationManager = AppNavigationManager.shared
 	@ObservedObject private var _premiumFilter = PremiumFilterPreferences.shared
+	@ObservedObject private var _pinned = PinnedSourcesManager.shared
 
 	private var _filteredSources: [AltSource] {
 		_sources.filter { _searchText.isEmpty || ($0.name?.localizedCaseInsensitiveContains(_searchText) ?? false) }
+	}
+
+	private var _pinnedSources: [AltSource] {
+		_filteredSources.filter(_pinned.isPinned)
+	}
+
+	private var _unpinnedSources: [AltSource] {
+		_filteredSources.filter { !_pinned.isPinned($0) }
 	}
 
 	@FetchRequest(
@@ -119,6 +128,9 @@ struct SourcesView: View {
 		NBListAdaptable {
 			if !_filteredSources.isEmpty {
 				allRepositoriesSection
+				if !_pinnedSources.isEmpty {
+					pinnedSection
+				}
 				repositoriesSection
 			}
 		}
@@ -198,18 +210,37 @@ struct SourcesView: View {
 	}
 
 	@ViewBuilder
-	private var repositoriesSection: some View {
-		let sectionTitle = _isEditMode ? "\(_selectedSources.count) selected" : "\(_filteredSources.count)"
+	private var pinnedSection: some View {
+		// The selection count moves here when every source is pinned.
+		let showsSelection = _isEditMode && _unpinnedSources.isEmpty
 		NBSection(
-			.localized("Repositories"),
-			secondary: sectionTitle
+			.localized("Pinned"),
+			secondary: showsSelection ? "\(_selectedSources.count) selected" : "\(_pinnedSources.count)"
 		) {
-			ForEach(_filteredSources) { source in
-				if _isEditMode {
-					editModeRow(for: source)
-				} else {
-					normalModeRow(for: source)
-				}
+			sourceRows(_pinnedSources)
+		}
+	}
+
+	@ViewBuilder
+	private var repositoriesSection: some View {
+		let sectionTitle = _isEditMode ? "\(_selectedSources.count) selected" : "\(_unpinnedSources.count)"
+		if !_unpinnedSources.isEmpty {
+			NBSection(
+				.localized("Repositories"),
+				secondary: sectionTitle
+			) {
+				sourceRows(_unpinnedSources)
+			}
+		}
+	}
+
+	@ViewBuilder
+	private func sourceRows(_ sources: [AltSource]) -> some View {
+		ForEach(sources) { source in
+			if _isEditMode {
+				editModeRow(for: source)
+			} else {
+				normalModeRow(for: source)
 			}
 		}
 	}
