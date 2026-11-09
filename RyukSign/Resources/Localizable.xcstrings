@@ -75853,6 +75853,255 @@
           }
         }
       }
+    },
+    "Updates Available" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديثات متوفرة"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostupné aktualizace"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates Available"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizaciones disponibles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour disponibles"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembaruan Tersedia"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiornamenti disponibili"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostępne aktualizacje"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступны обновления"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Güncellemeler Mevcut"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có bản cập nhật"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有可用更新"
+          }
+        }
+      }
+    },
+    "Not Installed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غير مثبّت"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenainstalováno"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht installiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Installed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No instalada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non installée"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Terpasang"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non installata"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezainstalowana"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не установлено"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yüklü Değil"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chưa cài đặt"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未安装"
+          }
+        }
+      }
+    },
+    "Based on the apps RyukSign installed and the newest signed copy of each app in your library. Swipe left on an app you've since deleted, or connect your pairing file to check automatically." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استنادًا إلى التطبيقات التي ثبّتها RyukSign وأحدث نسخة موقّعة من كل تطبيق في مكتبتك. اسحب لليسار على أي تطبيق حذفته منذ ذلك الحين، أو اربط ملف الاقتران للتحقق تلقائيًا."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na základě aplikací, které nainstaloval RyukSign, a nejnovější podepsané kopie každé aplikace v knihovně. Přejeďte doleva na aplikaci, kterou jste mezitím smazali, nebo připojte soubor párování pro automatickou kontrolu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basiert auf den von RyukSign installierten Apps und der neuesten signierten Kopie jeder App in deiner Mediathek. Wische bei einer inzwischen gelöschten App nach links oder verbinde deine Kopplungsdatei, um automatisch zu prüfen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Based on the apps RyukSign installed and the newest signed copy of each app in your library. Swipe left on an app you've since deleted, or connect your pairing file to check automatically."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basado en las apps que instaló RyukSign y en la copia firmada más reciente de cada app de tu biblioteca. Desliza a la izquierda sobre una app que hayas eliminado desde entonces, o conecta tu archivo de emparejamiento para comprobarlo automáticamente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basé sur les apps installées par RyukSign et la copie signée la plus récente de chaque app de votre bibliothèque. Balayez vers la gauche une app supprimée depuis, ou connectez votre fichier de jumelage pour vérifier automatiquement."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berdasarkan app yang dipasang RyukSign dan salinan bertanda tangan terbaru dari setiap app di pustaka Anda. Geser ke kiri pada app yang sudah Anda hapus, atau hubungkan file pairing untuk memeriksa secara otomatis."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In base alle app installate da RyukSign e alla copia firmata più recente di ogni app nella libreria. Scorri a sinistra su un’app che hai eliminato nel frattempo, oppure collega il file di abbinamento per controllare automaticamente."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie aplikacji zainstalowanych przez RyukSign i najnowszej podpisanej kopii każdej aplikacji w bibliotece. Przesuń w lewo aplikację, którą usunięto, lub połącz plik parowania, aby sprawdzać automatycznie."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На основе приложений, установленных RyukSign, и последней подписанной копии каждого приложения в медиатеке. Смахните влево приложение, которое вы уже удалили, или подключите файл сопряжения для автоматической проверки."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RyukSign'ın yüklediği uygulamalara ve kitaplığınızdaki her uygulamanın en yeni imzalı kopyasına göre. Sonradan sildiğiniz bir uygulamada sola kaydırın veya otomatik kontrol için eşleme dosyanızı bağlayın."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dựa trên các ứng dụng RyukSign đã cài và bản ký mới nhất của mỗi ứng dụng trong thư viện. Vuốt sang trái trên ứng dụng bạn đã xoá, hoặc kết nối tệp ghép đôi để kiểm tra tự động."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基于 RyukSign 安装过的 App 以及资源库中每个 App 的最新签名副本。在已删除的 App 上向左轻扫，或连接配对文件以自动检查。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

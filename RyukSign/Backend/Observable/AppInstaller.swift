@@ -169,6 +169,7 @@ final class AppInstaller: ObservableObject {
 		case .completed(let result):
 			_progressTask?.cancel()
 			_progressTask = nil
+			if case .success = result { InstallHistory.record(app) }
 			_finish(result.map { .installed })
 		case .broken(let error):
 			_progressTask?.cancel()
