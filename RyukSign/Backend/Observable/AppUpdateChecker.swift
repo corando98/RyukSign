@@ -19,6 +19,8 @@ final class AppUpdateChecker: ObservableObject {
     @Published private(set) var updateCount: Int = 0
     
     private var updateCache: [String: Bool] = [:]
+    /// Lowercased developer names listed for each bundle identifier, across every loaded source.
+    private var developersByIdentifier: [String: Set<String>] = [:]
     private let cacheQueue = DispatchQueue(label: "com.feather.updatechecker", attributes: .concurrent)
     
     private init() {}
@@ -83,6 +85,37 @@ final class AppUpdateChecker: ObservableObject {
         }.value
     }
 
+    /// Rebuilt whenever sources load, so name matches can be checked against every source.
+    func updateDevelopers<S: Sequence>(from sources: S) where S.Element == ASRepository {
+        var developers: [String: Set<String>] = [:]
+        for source in sources {
+            for app in source.apps {
+                guard let identifier = app.id, !identifier.isEmpty,
+                      let developer = Self.normalizedDeveloper(app.developer) else { continue }
+                developers[identifier, default: []].insert(developer)
+            }
+        }
+        cacheQueue.async(flags: .barrier) { [weak self] in
+            self?.developersByIdentifier = developers
+        }
+    }
+
+    /// A name alone can pair two unrelated apps, so it only counts when the listing comes from
+    /// the same developer as a listing for the library app's own bundle identifier.
+    func allowsNameMatch(_ app: ASRepository.App, identifier: String?, originalIdentifier: String?) -> Bool {
+        guard let developer = Self.normalizedDeveloper(app.developer) else { return false }
+        let developers = cacheQueue.sync { developersByIdentifier }
+        return [originalIdentifier, identifier].contains { id in
+            id.flatMap { developers[$0] }?.contains(developer) ?? false
+        }
+    }
+
+    private static func normalizedDeveloper(_ developer: String?) -> String? {
+        guard let trimmed = developer?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+              !trimmed.isEmpty else { return nil }
+        return trimmed
+    }
+
     func clearCache() {
         cacheQueue.async(flags: .barrier) { [weak self] in
             self?.updateCache.removeAll()
@@ -106,7 +139,11 @@ final class AppUpdateChecker: ObservableObject {
 
         guard !appBundleId.isEmpty || !appNameLower.isEmpty else { return nil }
 
-        guard let match = installed.matches(bundleId: appBundleId, nameLower: appNameLower),
+        guard let match = installed.matches(
+                bundleId: appBundleId,
+                nameLower: appNameLower,
+                allowsNameMatch: { self.allowsNameMatch(app, identifier: $0, originalIdentifier: $1) }
+              ),
               !match.versions.isEmpty
         else { return nil }
 
@@ -196,6 +233,8 @@ struct InstalledAppsIndex {
     private struct Entry {
         let version: String?
         let uuid: String?
+        let identifier: String?
+        let originalIdentifier: String?
     }
 
     private var entries: [Entry] = []
@@ -215,7 +254,7 @@ struct InstalledAppsIndex {
 
     private mutating func add(identifier: String?, originalIdentifier: String?, name: String?, version: String?, uuid: String?) {
         let index = entries.count
-        entries.append(Entry(version: version, uuid: uuid))
+        entries.append(Entry(version: version, uuid: uuid, identifier: identifier, originalIdentifier: originalIdentifier))
 
         if let originalIdentifier {
             byIdentifier[originalIdentifier, default: []].append(index)
@@ -227,13 +266,21 @@ struct InstalledAppsIndex {
     }
 
     /// Versions of every matching installed app and the uuid of the first match, in install-list order.
-    func matches(bundleId: String, nameLower: String) -> (versions: [String], uuid: String)? {
+    /// `allowsNameMatch` vets apps matched by name alone, given their identifier and original identifier.
+    func matches(
+        bundleId: String,
+        nameLower: String,
+        allowsNameMatch: (String?, String?) -> Bool
+    ) -> (versions: [String], uuid: String)? {
         var indices = Set<Int>()
         if !bundleId.isEmpty, let ids = byIdentifier[bundleId] {
             indices.formUnion(ids)
         }
-        if let ids = byName[nameLower] {
-            indices.formUnion(ids)
+        for index in byName[nameLower] ?? [] where !indices.contains(index) {
+            let entry = entries[index]
+            if allowsNameMatch(entry.identifier, entry.originalIdentifier) {
+                indices.insert(index)
+            }
         }
         guard !indices.isEmpty else { return nil }
 

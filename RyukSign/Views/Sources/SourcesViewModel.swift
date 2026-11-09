@@ -169,6 +169,7 @@ final class SourcesViewModel: ObservableObject {
 
 			// Publish progress (grows, never empties).
 			self.sources = working
+			AppUpdateChecker.shared.updateDevelopers(from: working.values)
 		}
 
 		Logger.misc.info("fetchSources DONE: \(working.count, privacy: .public)/\(items.count, privacy: .public) loaded")
