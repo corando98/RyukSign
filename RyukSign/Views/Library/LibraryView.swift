@@ -13,6 +13,8 @@ import NimbleViews
 struct LibraryView: View {
     @StateObject var downloadManager = DownloadManager.shared
     @ObservedObject private var tabSelection = TabSelectionObserver.shared
+    @ObservedObject private var _deviceUpdates = DeviceUpdatesManager.shared
+    @ObservedObject private var _sourcesViewModel = SourcesViewModel.shared
     
     @State private var _selectedInfoAppPresenting: AnyApp?
     @State private var _selectedSigningAppPresenting: AnyApp?
@@ -44,6 +46,11 @@ struct LibraryView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Imported.sortIndex, ascending: true)],
         animation: .snappy
     ) private var _importedApps: FetchedResults<Imported>
+
+    @FetchRequest(
+        entity: AltSource.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \AltSource.name, ascending: true)]
+    ) private var _sources: FetchedResults<AltSource>
     
     // MARK: Computed Properties
     private var filteredSignedApps: [Signed] {
@@ -70,6 +77,10 @@ struct LibraryView: View {
     
     private var hasNoContent: Bool {
         filteredSignedApps.isEmpty && filteredImportedApps.isEmpty
+    }
+
+    private var showsDeviceUpdates: Bool {
+        !_deviceUpdates.updates.isEmpty && !_editMode.isEditing && _searchText.isEmpty
     }
     
     // MARK: Body
@@ -157,6 +168,10 @@ struct LibraryView: View {
     private var mainContent: some View {
         ScrollViewReader { proxy in
             NBListAdaptable {
+                if showsDeviceUpdates {
+                    deviceUpdatesSection
+                }
+
                 if !hasNoContent {
                     appsListContent
                 }
@@ -180,10 +195,58 @@ struct LibraryView: View {
             }
         }
         .overlay {
-            if hasNoContent {
+            if hasNoContent && !showsDeviceUpdates {
                 emptyStateView
             }
         }
+        .task {
+            await _refreshDeviceUpdates()
+        }
+        .refreshable {
+            await _refreshDeviceUpdates()
+        }
+        .onChange(of: _sourcesViewModel.isFinished) { finished in
+            if finished {
+                _deviceUpdates.match(sources: _sourcesViewModel.sources, signedApps: Array(_signedApps))
+            }
+        }
+    }
+
+    // MARK: Device Updates Section
+    @ViewBuilder
+    private var deviceUpdatesSection: some View {
+        NBSection(
+            .localized("Updates Available"),
+            secondary: _deviceUpdates.updates.count.description
+        ) {
+            ForEach(_deviceUpdates.updates) { update in
+                HStack(spacing: 2) {
+                    FRIconCellView(
+                        title: update.app.currentName,
+                        subtitle: "\(update.installedVersion) → \(update.app.currentVersion ?? "")",
+                        iconUrl: update.app.iconURL
+                    )
+                    DownloadButtonView(app: update.app)
+                }
+                .swipeActions {
+                    if update.isInstalled {
+                        Button(.localized("Not Installed"), systemImage: "minus.circle") {
+                            withAnimation { _deviceUpdates.markNotInstalled(update) }
+                        }
+                    }
+                }
+            }
+        } footer: {
+            if _deviceUpdates.method == .history {
+                Text(.localized("Based on the apps RyukSign installed and the newest signed copy of each app in your library. Swipe left on an app you've since deleted, or connect your pairing file to check automatically."))
+            }
+        }
+    }
+
+    /// Sources normally load from the Sources tab, which may not have opened yet.
+    private func _refreshDeviceUpdates() async {
+        await _sourcesViewModel.fetchSources(_sources)
+        await _deviceUpdates.refresh(sources: _sourcesViewModel.sources, signedApps: Array(_signedApps))
     }
     
     // MARK: Apps List Content
